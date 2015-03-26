@@ -61,7 +61,7 @@ PsiReturnType nowriter(Options& options)
     const int print = options.get_int("PRINT");
     std::string filename = options.get_str("OUTPUT_FILENAME");
     // PSI always converts to all upper cases for the moment...
-    std::transform(filename.begin(), filename.end(), filename.begin(), ::toupper);
+    std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
 
     shared_ptr<PSIO> psio(_default_psio_lib_);
 

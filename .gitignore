@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+*~
+*.out
+*.h5
+*.molden
+*.clean

@@ -1,0 +1,24 @@
+molecule H2 {
+    H 0 0 0
+    H 0 0 2
+    units au
+}
+
+set {
+    basis cc-pvdz
+
+    print_mos yes
+
+    num_roots 1
+
+    OPDM yes
+    NAT_ORBS_WRITE yes
+
+    OPDM_PRINT yes
+}
+
+plugin_load("./nowriter.so")
+
+energy('fci')
+
+plugin("nowriter.so")

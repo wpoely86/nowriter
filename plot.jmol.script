@@ -1,0 +1,46 @@
+set antialiasImages = True
+# no Jmol logo
+set frank off
+
+load "out.molden"
+
+# get a nice viewpoint
+rotate x 45
+rotate y 45
+
+# give all atoms a label
+select all
+label "%e"
+
+# atoms are 15% ov vanderwaals radius
+percentVdwAtom = 15
+color atoms opaque
+zoom 100
+axes on
+
+info_mos = getProperty("auxiliaryInfo")
+mos = info_mos.models[0].moData.mos.length
+in_name = info_mos.models[0].fileName.split('/')[-0]
+
+
+for (var tel=1;tel<=mos;tel=tel+1)
+{
+#    isosurface resolution 20
+#    isosurface mo @tel 
+    mo resolution 20
+    mo titleformat "%F|Orbital %I|Sym %S|Occ %O"
+    mo @tel
+
+    tel_nice = format("%05d", tel)
+    filename = "orbital-" + tel_nice + "-" + info_mos.models[0].moData.mos[tel].symmetry + ".png"
+    # the | is a newline
+    mylabel = in_name + "|Orbital " + tel + "|Symm " + info_mos.models[0].moData.mos[tel].symmetry + "|Occ " + info_mos.models[0].moData.mos[tel].occupancy
+
+    background white
+    set echo top left
+    color echo black
+    font echo 36 sans serif
+#    echo @mylabel
+
+    write IMAGE 1024 768 PNG @filename
+}

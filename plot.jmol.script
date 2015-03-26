@@ -1,3 +1,6 @@
+# This will plot all orbitals one by one to a png file. It
+# read 'out.molden' and loops over the orbitals
+
 set antialiasImages = True
 # no Jmol logo
 set frank off
